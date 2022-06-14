@@ -1,0 +1,362 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
+	<doc title="CreateDeliveryOrder">CreateDeliveryOrder</doc>
+	<grammars>
+		<xs:schema elementFormDefault="qualified" nxsd:encoding="UTF-8" nxsd:version="JSON" targetNamespace="http://www.entel.cl/ESO/MessageHeader/JSON/v1" xmlns="http://www.entel.cl/ESO/MessageHeader/JSON/v1" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="RequestHeader">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Consumer"/>
+						<xs:element ref="Trace"/>
+						<xs:element ref="Channel"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ResponseHeader">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Consumer"/>
+						<xs:element ref="Trace"/>
+						<xs:element ref="Channel"/>
+						<xs:element ref="Result"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Result">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="status" type="xs:string"/>
+						<xs:element name="description" type="xs:string"/>
+						<xs:element name="CanonicalError">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="code" type="xs:string"/>
+									<xs:element name="description" type="xs:string"/>
+									<xs:element name="type" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="SourceError"/>
+						<xs:element name="CorrelativeErrors">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" ref="SourceError"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Consumer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="sysCode" type="xs:string"/>
+						<xs:element name="enterpriseCode" type="xs:string"/>
+						<xs:element name="countryCode" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Trace">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="clientReqTimestamp" type="xs:string"/>
+						<xs:element name="reqTimestamp" type="xs:string"/>
+						<xs:element name="rspTimestamp" type="xs:string"/>
+						<xs:element name="processID" type="xs:string"/>
+						<xs:element name="eventID" type="xs:string"/>
+						<xs:element name="sourceID" type="xs:string"/>
+						<xs:element name="correlationEventID" type="xs:string"/>
+						<xs:element name="conversationID" type="xs:string"/>
+						<xs:element name="correlationID" type="xs:string"/>
+						<xs:element name="Service">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="code" type="xs:string"/>
+									<xs:element name="name" type="xs:string"/>
+									<xs:element name="operation" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Channel">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="name" type="xs:string"/>
+						<xs:element name="mode" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SourceError">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="code" type="xs:string"/>
+						<xs:element name="description" type="xs:string"/>
+						<xs:element name="ErrorSourceDetails">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="source" type="xs:string"/>
+									<xs:element name="details" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SourceFault" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" nxsd:encoding="UTF-8" nxsd:version="JSON" targetNamespace="http://www.entel.cl/EBM/CreateDeliveryOrder/v1" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:esons_header="http://www.entel.cl/ESO/MessageHeader/JSON/v1" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" xmlns:tns="http://www.entel.cl/EBM/CreateDeliveryOrder/v1">			
+			<xs:element name="CreateDeliveryOrder_REQ" type="tns:CreateDeliveryOrder_REQ_Type"/>
+			<xs:complexType name="CreateDeliveryOrder_REQ_Type">
+				<xs:sequence>
+					<xs:element ref="esons_header:RequestHeader"/>
+					<xs:element name="Body">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Delivery">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="shipperId" minOccurs="0" type="xs:string"/>
+											<xs:element name="deliveryReserveSlotId" type="xs:string"/>
+											<xs:element name="CustomerOrder">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="channel" minOccurs="0" type="xs:string"/>
+														<xs:element name="externalOrderId" type="xs:string"/>
+														<xs:element minOccurs="0" name="orderType" type="xs:string"/>
+														<xs:element maxOccurs="unbounded" name="CustomerAccount">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="Individual">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element name="CustomerAccountContact">
+																					<xs:complexType>
+																						<xs:sequence>
+																							<xs:element name="contactType" type="xs:string"/>
+																							<xs:element name="contactValue" type="xs:string"/>
+																						</xs:sequence>
+																					</xs:complexType>
+																				</xs:element>
+																				<xs:element name="IndividualIdentification">
+																					<xs:complexType>
+																						<xs:sequence>
+																							<xs:element name="number" type="xs:string"/>
+																							<xs:element name="type" type="xs:string"/>
+																							<xs:element name="validateIdentification" type="xs:boolean"/>
+																						</xs:sequence>
+																					</xs:complexType>
+																				</xs:element>
+																				<xs:element name="IndividualName">
+																					<xs:complexType>
+																						<xs:sequence>
+																							<xs:element name="firstName" type="xs:string"/>
+																							<xs:element name="lastName" type="xs:string"/>
+																						</xs:sequence>
+																					</xs:complexType>
+																				</xs:element>
+																			</xs:sequence>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+														<xs:element maxOccurs="unbounded" name="CustomerOrderItem">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="PhysicalResource">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element name="physicalResourceId" type="xs:string"/>
+																				<xs:element name="PhysicalResourceSpec">
+																					<xs:complexType>
+																						<xs:sequence>
+																							<xs:element name="skuNumber" type="xs:string"/>
+																						</xs:sequence>
+																					</xs:complexType>
+																				</xs:element>
+																			</xs:sequence>
+																		</xs:complexType>
+																	</xs:element>
+																	<xs:element name="quantity">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element name="amount" type="xs:float"/>
+																			</xs:sequence>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+														<xs:element maxOccurs="unbounded" minOccurs="0" name="PaymentMethod">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element minOccurs="0" name="paymentMethodType" type="xs:string"/>
+																	<xs:element name="amount">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element name="amount" type="xs:float"/>
+																			</xs:sequence>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element minOccurs="0" name="DeliveryAddress">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element minOccurs="0" name="address">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element minOccurs="0" name="additionalAddressInfo" type="xs:string"/>
+																	<xs:element minOccurs="0" name="addressName" type="xs:string"/>
+																	<xs:element minOccurs="0" name="addressNumber" type="xs:string"/>
+																	<xs:element minOccurs="0" name="addressNumberComplement" type="xs:string"/>
+																	<xs:element minOccurs="0" name="addressNumberPrefix" type="xs:string"/>
+																	<xs:element minOccurs="0" name="addressNumberSuffix" type="xs:string"/>
+																	<xs:element minOccurs="0" name="addressType" type="xs:string"/>
+																	<xs:element minOccurs="0" name="apt" type="xs:string"/>
+																	<xs:element minOccurs="0" name="district" type="xs:string"/>
+																	<xs:element minOccurs="0" name="edificationType" type="xs:string"/>
+																	<xs:element minOccurs="0" name="lot" type="xs:string"/>
+																	<xs:element minOccurs="0" name="populationCenterDescription" type="xs:string"/>
+																	<xs:element minOccurs="0" name="populationCenterId" type="xs:integer"/>
+																	<xs:element minOccurs="0" name="primaryAddressInd" type="xs:string"/>
+																	<xs:element minOccurs="0" name="province" type="xs:string"/>
+																	<xs:element minOccurs="0" name="region" type="xs:string"/>
+																	<xs:element minOccurs="0" name="streetName1" type="xs:string"/>
+																	<xs:element minOccurs="0" name="streetName2" type="xs:string"/>
+																	<xs:element minOccurs="0" name="streetName3" type="xs:string"/>
+																	<xs:element minOccurs="0" name="streetName4" type="xs:string"/>
+																	<xs:element minOccurs="0" name="validateIndicator" type="xs:boolean"/>
+																	<xs:element minOccurs="0" name="zipCode" type="xs:string"/>
+																	<xs:element minOccurs="0" name="AbsoluteLocalLocation">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element minOccurs="0" name="x" type="xs:string"/>
+																				<xs:element minOccurs="0" name="y" type="xs:string"/>
+																			</xs:sequence>
+																		</xs:complexType>
+																	</xs:element>
+																	<xs:element minOccurs="0" name="GeographicAddress">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element minOccurs="0" name="country" type="xs:string"/>
+																				<xs:element minOccurs="0" name="province" type="xs:string"/>
+																				<xs:element minOccurs="0" name="state" type="xs:string"/>
+																			</xs:sequence>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element minOccurs="0" name="MarketSegment">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element minOccurs="0" name="ID" type="xs:string"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="SlotDelivery">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element minOccurs="0" name="ID" type="xs:string"/>
+														<xs:element name="dateAvailableSlot" type="xs:dateTime"/>
+														<xs:element name="deliveryType" type="xs:string"/>
+														<xs:element name="finalHour" type="xs:time"/>
+														<xs:element name="initialHour" type="xs:time"/>
+														<xs:element name="slotType" type="xs:string"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="Store">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ID" type="xs:string"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CreateDeliveryOrder_RSP" type="tns:CreateDeliveryOrder_RSP_Type"/>
+			<xs:complexType name="CreateDeliveryOrder_RSP_Type">
+				<xs:sequence>
+					<xs:element ref="esons_header:ResponseHeader"/>
+					<xs:element name="Body">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Delivery" maxOccurs="1" minOccurs="1">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="OrderDelivery" maxOccurs="1" minOccurs="1">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="ID" type="xs:string" maxOccurs="1" minOccurs="1"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CreateDeliveryOrder_FRSP" type="tns:CreateDeliveryOrder_FRSP_Type"/>
+			<xs:complexType name="CreateDeliveryOrder_FRSP_Type">
+				<xs:sequence>
+					<xs:element ref="esons_header:ResponseHeader"/>
+					<xs:element name="Body">
+						<xs:complexType>
+							<xs:sequence/>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="Fault">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="faultcode" type="xs:string"/>
+						<xs:element name="faultstring" type="xs:string"/>
+						<xs:element name="detail">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="tns:CreateDeliveryOrder_FRSP"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</grammars>
+	<resources base="http://www.entel.cl/ES/JSON/CreateDeliveryOrder/v1">
+		<resource path="/">
+			<method name="POST" soa:name="CreateDeliveryOrder">
+				<request>
+					<representation mediaType="application/json" element="CreateDeliveryOrder_REQ" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+				</request>
+				<response status="200">
+					<representation mediaType="application/json" element="CreateDeliveryOrder_RSP" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+				</response>
+				<response status="500">
+					<representation mediaType="application/json" element="Fault" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+				</response>
+			</method>
+		</resource>
+	</resources>
+</application>
