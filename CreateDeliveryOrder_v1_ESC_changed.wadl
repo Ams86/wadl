@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<doc title="CreateDeliveryOrder">CreateDeliveryOrder</doc>
 	<grammars>
 		<xs:schema elementFormDefault="qualified" nxsd:encoding="UTF-8" nxsd:version="JSON" targetNamespace="http://www.entel.cl/ESO/MessageHeader/JSON/v1" xmlns="http://www.entel.cl/ESO/MessageHeader/JSON/v1" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -345,16 +345,16 @@
 		</xs:schema>
 	</grammars>
 	<resources base="http://www.entel.cl/ES/JSON/CreateDeliveryOrder/v1">
-		<resource>
+		<resource path="/">
 			<method name="POST" soa:name="CreateDeliveryOrder">
 				<request>
-					<representation mediaType="application/json" element="CreateDeliveryOrder_REQ" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="xs:CreateDeliveryOrder_REQ" />
 				</request>
 				<response status="200">
-					<representation mediaType="application/json" element="CreateDeliveryOrder_RSP" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="xs:CreateDeliveryOrder_RSP" />
 				</response>
 				<response status="500">
-					<representation mediaType="application/json" element="Fault" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+					<representation mediaType="application/xml; charset=UTF-8" element="xs:Fault" />
 				</response>
 			</method>
 		</resource>
