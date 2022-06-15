@@ -344,11 +344,14 @@
 			</xs:element>
 		</xs:schema>
 	</grammars>
+	
+	<representation id="entry" mediaType="application/xml" element="xs:CreateDeliveryOrder_REQ"/> 
+	
 	<resources base="http://www.entel.cl/ES/JSON/CreateDeliveryOrder/v1">
 		<resource path="/">
 			<method name="POST" soa:name="CreateDeliveryOrder">
 				<request>
-					<representation mediaType="application/xml; charset=UTF-8" element="xs:CreateDeliveryOrder_REQ" />
+					<representation href="#entry" />
 				</request>
 				<response status="200">
 					<representation mediaType="application/xml; charset=UTF-8" element="xs:CreateDeliveryOrder_RSP" />
