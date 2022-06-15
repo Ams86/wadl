@@ -345,7 +345,7 @@
 		</xs:schema>
 	</grammars>
 	<resources base="http://www.entel.cl/ES/JSON/CreateDeliveryOrder/v1">
-		<resource path="/">
+		<resource>
 			<method name="POST" soa:name="CreateDeliveryOrder">
 				<request>
 					<representation mediaType="application/json" element="CreateDeliveryOrder_REQ" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
